@@ -1,6 +1,24 @@
-﻿@{
+﻿@model BookFilterViewModel
+
+@{
     ViewData["Title"] = "Book Page";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Book Page</p>
+<div class="container my-5">
+    @await Html.PartialAsync("_BookFilter", new BookFilterViewModel { SearchString = "" })
+    <h1 class="text-center mb-4">BOOKSHELF</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @foreach (var book in ViewBag.BooksMockData)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    @* <img src="@book.ImageUrl" class="card-img-top" alt="Book Cover"> *@
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text">@book.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
