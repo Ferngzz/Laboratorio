@@ -23,6 +23,7 @@ html {
 }
 
 body {
+  padding-top: 75px;
   margin-bottom: 60px;
   background-color: var(--sky-blue);
   color: var(--prussian-blue);
@@ -38,63 +39,183 @@ body {
 }
 
 /*
-  Header Component - BookShelf
- */
-
-
+  Header Component
+*/
 .navbar-custom {
-  background-color: var(--blue-green);
-  border-bottom: 4px solid var(--ut-orange);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  min-height: 80px;
+  background-color: var(--prussian-blue);
+  border-bottom: 3px solid var(--ut-orange);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 1rem;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
 }
 
-.navbar-custom .navbar-brand,
-.navbar-custom .nav-link {
-  color: white;
-  font-weight: 500;
-  font-size: 1.1rem;
+/* --- Brand Logo --- */
+.navbar-custom .navbar-brand {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   transition: color 0.3s ease;
 }
 
-.navbar-custom .nav-link:hover,
 .navbar-custom .navbar-brand:hover {
   color: var(--selective-yellow);
 }
 
-/*
-  Index Page - BookShelf
- */
 
-.bookshelf-title {
-  font-family: 'Segoe UI', sans-serif;
-  font-weight: 600;
-  color: #343a40;
+.navbar-brand i {
+  color: var(--ut-orange);
+  margin-right: 8px;
+  font-size: 1.4rem; 
 }
 
+/* --- Navigation Links --- */
+.navbar-custom .nav-item {
+  margin: 0 5px;
+}
+
+.navbar-custom .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* --- Hover and Active State for Links --- */
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link:focus {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+
+
+.navbar-custom .nav-link.active {
+  color: var(--selective-yellow);
+  font-weight: 700;
+}
+
+/* Animated underline effect for the active link */
+.navbar-custom .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15px; 
+  right: 15px;
+  height: 3px;
+  background-color: var(--selective-yellow);
+  border-radius: 2px;
+}
+
+/* --- Toggler Button for Mobile --- */
+.navbar-toggler {
+  border: 2px solid var(--ut-orange);
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler-icon {
+  /* This uses an SVG to customize the hamburger icon color */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(251, 133, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/*
+  Index Page - BookShelf
+*/
+
+/* --- Page Title --- */
+.bookshelf-title {
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  color: var(--prussian-blue);
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  border-bottom: 4px solid var(--ut-orange);
+  display: inline-block;
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* --- Card Styling --- */
 .card {
-  border: 2px solid var(--prussian-blue);
-  border-radius: 12px;
   background-color: var(--prussian-blue);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-family: 'Segoe UI', sans-serif;
-  font-weight: 600;
-  color: #343a40;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(33, 158, 188, 0.4);
+}
+
+/* --- Book Cover Image --- */
+.card-img-container {
+  overflow: hidden;
+}
+
+.card .card-img-top {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* --- Card Body & Text --- */
+.card-body {
+  flex-grow: 1;
 }
 
 .card-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--ut-orange);
+  color: var(--selective-yellow);
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .card-text {
-  font-size: 0.95rem;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+
+  /* Truncate long descriptions for a cleaner look */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Show a maximum of 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Card Footer & Action Buttons --- */
+.card-footer {
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  text-align: center;
+}
+
+.btn-details {
+  background-color: var(--ut-orange);
+  color: var(--prussian-blue);
+  font-weight: 600;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+  background-color: var(--selective-yellow);
+  color: var(--prussian-blue);
+  box-shadow: 0 4px 15px rgba(251, 133, 0, 0.3);
+  transform: translateY(-2px);
 }

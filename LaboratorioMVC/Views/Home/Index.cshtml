@@ -1,23 +1,29 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-
 }
 
 <div class="container my-5">
-    <h1 class="text-center mb-4">BOOKSHELF</h1>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+    <div class="title-container">
+        <h1 class="bookshelf-title">Bookshelf</h1>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
         @foreach (var book in ViewBag.Books)
         {
             <div class="col">
                 <div class="card h-100">
-                    @* <img src="@book.ImageUrl" class="card-img-top" alt="Book Cover"> *@
+                    <div class="card-img-container">
+                        <img src="https://placehold.co/600x800/023047/FFB703?text=@book.Title" class="card-img-top" alt="Cover for @book.Title">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">@book.Title</h5>
                         <p class="card-text">@book.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-details">View Details</a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
-
