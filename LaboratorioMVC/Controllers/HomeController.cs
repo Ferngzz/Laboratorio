@@ -15,6 +15,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var books = new[]
+        {
+            new { Title = "Book Title 1", Description = "A short description of the book goes here."},
+            new { Title = "Book Title 2", Description = "Another book description goes here."},
+            new { Title = "Book Title 3", Description = "Yet another book description." }
+        };
+        
+        ViewBag.Books = books;
+        
         return View();
     }
 

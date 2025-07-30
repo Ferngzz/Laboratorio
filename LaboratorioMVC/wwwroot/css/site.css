@@ -1,5 +1,9 @@
-html {
-  font-size: 14px;
+:root {
+  --sky-blue: #8ecae6ff;
+  --blue-green: #219ebcff;
+  --prussian-blue: #023047ff;
+  --selective-yellow: #ffb703ff;
+  --ut-orange: #fb8500ff;
 }
 
 @media (min-width: 768px) {
@@ -15,10 +19,13 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  font-size: 14px;
 }
 
 body {
   margin-bottom: 60px;
+  background-color: var(--sky-blue);
+  color: var(--prussian-blue);
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +35,40 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+/*
+  Index Page - BookShelf
+ */
+
+.bookshelf-title {
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.card {
+  border: 2px solid var(--prussian-blue);
+  border-radius: 12px;
+  background-color: var(--prussian-blue);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ut-orange);
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #ffffff;
 }
