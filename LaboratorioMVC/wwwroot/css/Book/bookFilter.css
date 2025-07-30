@@ -1,0 +1,56 @@
+/* --- Search Bar Redesign V2 (Minimalist Underline) --- */
+.search-container {
+    max-width: 600px; 
+    width: 90%;      
+    margin: 0 auto 3rem auto; 
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+/* The main input field */
+.search-container .form-control {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none !important;
+
+    
+    border-bottom: 2px solid rgba(2, 48, 71, 0.35);
+
+    font-size: 1.5rem;
+    color: var(--prussian-blue);
+    padding: 10px 45px 10px 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+/* Change placeholder text color */
+.search-container .form-control::placeholder {
+    color: rgba(2, 48, 71, 0.5);
+    font-weight: 300;
+}
+
+/* The effect when the user clicks into the search bar */
+.search-container .form-control:focus {
+    border-bottom-color: var(--ut-orange);
+}
+
+/* The search icon button */
+.btn-search-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+
+    background: none;
+    border: none;
+    color: rgba(2, 48, 71, 0.6);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-search-icon:hover {
+    color: var(--ut-orange);
+}

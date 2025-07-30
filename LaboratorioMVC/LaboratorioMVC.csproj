@@ -9,9 +9,5 @@
   <ItemGroup>
     <ProjectReference Include="../LaboratorioWebApi/LaboratorioWebApi.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Shared\Book\" />
-  </ItemGroup>
   
 </Project>
