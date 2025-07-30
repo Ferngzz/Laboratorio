@@ -27,21 +27,6 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Author()
-    {
-        return View();
-    }
-    
-    public IActionResult Book()
-    {
-        return View();
-    }
-    
-    public IActionResult Loan()
-    {
-        return View();
-    }
-
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
