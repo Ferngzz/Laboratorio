@@ -38,6 +38,32 @@ body {
 }
 
 /*
+  Header Component - BookShelf
+ */
+
+
+.navbar-custom {
+  background-color: var(--blue-green);
+  border-bottom: 4px solid var(--ut-orange);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  min-height: 80px;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .navbar-brand:hover {
+  color: var(--selective-yellow);
+}
+
+/*
   Index Page - BookShelf
  */
 
