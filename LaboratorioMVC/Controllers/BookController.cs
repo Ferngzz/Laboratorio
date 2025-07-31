@@ -30,7 +30,7 @@ public class BookController : Controller
 
         if (!string.IsNullOrEmpty(searchString))
         {
-            filteredBooks = filteredBooks.Where(b => b.Title.ToLower().Contains(searchString.ToLower()));
+            filteredBooks = filteredBooks.Where(b => StringComparer.OrdinalIgnoreCase.Equals(b.Title, searchString));
         }
 
         var bookFilterViewModel = new BookFilterViewModel
