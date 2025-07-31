@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<BookshelfContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    // options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
     options.EnableSensitiveDataLogging().LogTo(Console.WriteLine);
 });
 

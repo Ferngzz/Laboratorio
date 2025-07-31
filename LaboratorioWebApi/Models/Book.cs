@@ -6,4 +6,5 @@ public class Book
     public string Title { get; set; }
     public string Description { get; set; }
     public virtual List<Loan> Loans { get; set; }
+    public virtual List<Author> Authors { get; set; }
 }

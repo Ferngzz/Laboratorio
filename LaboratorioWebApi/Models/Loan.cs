@@ -6,5 +6,5 @@ public class Loan
     public DateTime WithdrawalDate { get; set; }
     public DateTime DevolutionDate { get; set; }
     public Boolean Returned { get; set; }
-    
+    public virtual Book Book { get; set; }
 }
