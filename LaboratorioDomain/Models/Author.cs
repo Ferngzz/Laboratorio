@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LaboratorioWebApi.Models;
+﻿namespace LaboratorioWebApi.Models;
 
 public class Author
 {

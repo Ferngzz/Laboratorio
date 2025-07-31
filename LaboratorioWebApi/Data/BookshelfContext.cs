@@ -5,10 +5,13 @@ namespace LaboratorioWebApi.Data;
 
 public class BookshelfContext : DbContext
 {
-    DbSet<Book> Books { get; set; }
-    DbSet<Author> Authors { get; set; }
-    // DbSet<AuthorBook> AuthorBooks { get; set; }
-    DbSet<Loan> Loans { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Loan> Loans { get; set; }
+    
+    public BookshelfContext(DbContextOptions options) : base(options)
+    {
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -25,8 +28,5 @@ public class BookshelfContext : DbContext
     protected BookshelfContext()
     {
     }
-
-    public BookshelfContext(DbContextOptions options) : base(options)
-    {
-    }
+    
 }

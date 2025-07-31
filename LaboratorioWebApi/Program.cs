@@ -1,4 +1,7 @@
+using LaboratorioDomain.Repositories;
 using LaboratorioWebApi.Data;
+using LaboratorioWebApi.Repositories;
+using LaboratorioWebApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +14,14 @@ builder.Services.AddDbContext<BookshelfContext>(options =>
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<AuthorService>();
+builder.Services.AddScoped<ILoanRepository, LoanRepository>();
+builder.Services.AddScoped<LoanService>();
+
 
 var app = builder.Build();
 
