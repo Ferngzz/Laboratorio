@@ -50,6 +50,14 @@ public class BookController : Controller
                 Description = "A modern retelling of the Greek myth...",
                 Authors = new List<Author> { author4 },
                 Loans = new List<Loan>()
+            },
+            new Book
+            {
+                BookId = Guid.NewGuid(),
+                Title = "Circe",
+                Description = "A modern retelling of the Greek myth...",
+                Authors = new List<Author> { author4 },
+                Loans = new List<Loan>()
             }
             // Add more books similarly...
         };
