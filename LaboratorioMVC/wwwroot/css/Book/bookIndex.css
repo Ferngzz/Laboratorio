@@ -1,5 +1,5 @@
 /*
-    Badge Loaned
+    Badge Loaned - Top Left Corner
  */
 
 .status-badge {
@@ -18,6 +18,69 @@
     background-color: #28a745;
 }
 
+.status-badge.available:hover {
+    background-color: #1b7a30;
+}
+
 .status-badge.on-loan {
     background-color: #dc3545;
+}
+
+.status-badge.on-loan:hover {
+    background-color: #b11c2a;
+}
+
+/* 
+    Badge Due Date - Bottom Left Corner
+ */
+
+.card {
+    height: 100%;
+    width: 100%;
+    margin: 0 1em;
+    justify-content: end;
+}
+
+
+.custom-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.custom-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    
+}
+
+.due-date-badge {
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #ffc107;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.due-date-badge:hover {
+    background-color: #e0a800;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-container img {
+    width: 16rem;
+    aspect-ratio: 16/9;
 }
