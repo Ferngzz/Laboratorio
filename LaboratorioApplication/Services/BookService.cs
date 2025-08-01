@@ -29,7 +29,7 @@ public class BookService : IBookService
         return _mapper.Map<IEnumerable<BookDTO>>(books);
     }
 
-    public async Task<BookDTO> GetByBookIdAsync(Guid id)
+    public async Task<BookDTO?> GetByBookIdAsync(Guid id)
     {   
         var book = await _repository.GetByBookIdAsync(id);
         return _mapper.Map<BookDTO>(book);
