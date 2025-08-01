@@ -1,13 +1,20 @@
-using LaboratorioMVC.Models;
+using LaboratorioApplication.DTOs;
 using LaboratorioDomain.Models;
+using LaboratorioMVC.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LaboratorioMVC.Controllers;
 
 public class BookController : Controller
 {
+    private readonly BookController _bookController;
+    public BookController(BookController bookController)
+    {
+        _bookController = bookController;
+    }
+
     // GET
+    [HttpGet]
     public IActionResult Index(string searchString)
     {
         // Mock Authors
@@ -99,6 +106,14 @@ public class BookController : Controller
         };
 
         return View(bookFilterViewModel);
+    }
+
+    [HttpPost]
+    public IActionResult Index(BookDTO bookDTO)
+    {
+
+        
+        return RedirectToAction("Index");
     }
 
 }
