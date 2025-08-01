@@ -10,4 +10,6 @@ public interface ILoanRepository
     Task AddLoanAsync(Loan loan);
     Task UpdateLoanByIdAsync(Loan loan, Guid id);
     Task DeleteLoanByIdAsync(Guid id);
+    Task<Loan> LoanBookByIdAsync(Guid bookId);
+    Task<(Loan, decimal)> ReturnBookAsync(Guid bookId, Guid loanId);
 }

@@ -1,4 +1,4 @@
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Book;
 using LaboratorioApplication.IServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +44,13 @@ namespace LaboratorioDomain.Controllers
             return Ok(await _bookService.GetAllBooksByAuthorIdAsync(authorId));
         }
 
+        [HttpGet("author/{authorId}/books-loan-status")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetBooksLoanStatusByAuthor(Guid authorId)
+        {
+            return Ok(await _bookService.GetBooksLoanStatusByAuthorIdAsync(authorId));
+        }
+        
         // PUT: api/Book/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -67,7 +74,6 @@ namespace LaboratorioDomain.Controllers
         public async Task<ActionResult<BookDTO>> PostBook(BookDTO bookDto)
         {
             var book = await _bookService.AddBookAsync(bookDto);
-
             return CreatedAtAction("GetBook", new { id = book.BookId }, bookDto);
         }
 

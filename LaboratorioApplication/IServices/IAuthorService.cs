@@ -1,4 +1,5 @@
 ﻿using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Author;
 
 namespace LaboratorioApplication.IServices;
 

@@ -1,9 +1,6 @@
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Loan;
 using LaboratorioApplication.IServices;
-using LaboratorioApplication.Services;
-using LaboratorioDomain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LaboratorioDomain.Controllers
 {
@@ -66,7 +63,7 @@ namespace LaboratorioDomain.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<Loan>> PostLoan(LoanDTO loanDto)
+        public async Task<ActionResult<LoanCreateDTO>> PostLoan(LoanDTO loanDto)
         {
             var loan = await _loanService.AddLoanAsync(loanDto);
 
@@ -88,6 +85,30 @@ namespace LaboratorioDomain.Controllers
             return NoContent();
         }
 
+        [HttpPost("loan-book/{id}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> LoanBookByIdAsync(Guid bookId)
+        {
+            var loanCreateDto = await _loanService.LoanBookByIdAsync(bookId);
+            return CreatedAtAction("GetLoan" ,new {id = loanCreateDto.loanId}, loanCreateDto);
+        }
+
+        
+        [HttpPut("return/{bookId}/{loanId}")]
+        public async Task<IActionResult> ReturnBook(Guid bookId, Guid loanId)
+        {
+            var (loanDto, fine) = await _loanService.ReturnBookAsync(bookId, loanId);
+
+            if (loanDto == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                Loan = loanDto,
+                Fine = fine
+            });
+        }
+        
         private async Task<bool> LoanExists(Guid id)
         {
             var loan = await _loanService.GetByLoanIdAsync(id);

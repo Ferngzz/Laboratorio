@@ -1,6 +1,8 @@
 using AutoMapper;
 using LaboratorioDomain.Models;
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Author;
+using LaboratorioApplication.DTOs.Book;
+using LaboratorioApplication.DTOs.Loan;
 
 namespace LaboratorioApplication.Mappings;
 
@@ -13,9 +15,14 @@ public class MappingProfile : Profile
         
         CreateMap<AuthorDTO, Author>();
         CreateMap<Author, AuthorCreateDTO>();
+        
         CreateMap<Book, BookDTO>();
         CreateMap<BookDTO, Book>();
+        CreateMap<Book, BookLoanDTO>();
+        
         CreateMap<Loan, LoanDTO>();
         CreateMap<LoanDTO, Loan>();
+        CreateMap<Loan, LoanCreateDTO>();
+        CreateMap<Loan, LoanFineDTO>();
     }
 }

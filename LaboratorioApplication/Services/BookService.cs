@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Book;
 using LaboratorioApplication.IServices;
 using LaboratorioDomain.IRepositories;
 using LaboratorioDomain.Models;
@@ -35,6 +35,26 @@ public class BookService : IBookService
         return _mapper.Map<BookDTO>(book);
     }
 
+    public async Task<IEnumerable<BookLoanDTO>> GetBooksLoanStatusByAuthorIdAsync(Guid authorId)
+    {
+        var books = await _repository.GetBooksWithLoanStatusByAuthorIdAsync(authorId);
+
+        var result = books.Select(book =>
+        {
+            var activeLoan = book.Loans.FirstOrDefault(l => !l.Returned);
+
+            return new BookLoanDTO
+            {
+                Title = book.Title,
+                Description = book.Description,
+                Returned = activeLoan == null,
+                DevolutionDate = activeLoan?.DevolutionDate ?? DateTime.MinValue
+            };
+        });
+
+        return result;
+    }
+    
     public async Task<BookCreateDTO> AddBookAsync(BookDTO bookDto)
     {
         var book = _mapper.Map<Book>(bookDto);
@@ -59,4 +79,6 @@ public class BookService : IBookService
     {
         await  _repository.DeleteBookByIdAsync(id);
     }
+    
+    
 }

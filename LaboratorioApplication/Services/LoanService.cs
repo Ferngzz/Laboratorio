@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Loan;
 using LaboratorioApplication.IServices;
 using LaboratorioDomain.IRepositories;
 using LaboratorioDomain.Models;
@@ -58,5 +58,23 @@ public class LoanService : ILoanService
     public async Task DeleteLoanByIdAsync(Guid id)
     {
         await _loanRepository.DeleteLoanByIdAsync(id);
+    }
+
+    public async Task<LoanCreateDTO> LoanBookByIdAsync(Guid bookId)
+    {
+        var loan = await _loanRepository.LoanBookByIdAsync(bookId);
+        return _mapper.Map<LoanCreateDTO>(loan);
+    }
+
+    public async Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId)
+    {
+        var (loan, fine) = await _loanRepository.ReturnBookAsync(bookId, loanId);
+    
+        if (loan == null)
+            return (null, 0);
+    
+        var loanDto = _mapper.Map<LoanFineDTO>(loan);
+    
+        return (loanDto, fine);
     }
 }

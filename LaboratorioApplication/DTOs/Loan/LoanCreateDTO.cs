@@ -1,4 +1,4 @@
-﻿namespace LaboratorioApplication.DTOs;
+﻿namespace LaboratorioApplication.DTOs.Loan;
 
 public class LoanCreateDTO
 {

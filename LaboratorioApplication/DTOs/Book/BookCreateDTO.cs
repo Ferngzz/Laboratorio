@@ -1,4 +1,7 @@
-﻿namespace LaboratorioApplication.DTOs;
+﻿using LaboratorioApplication.DTOs.Author;
+using LaboratorioApplication.DTOs.Loan;
+
+namespace LaboratorioApplication.DTOs.Book;
 
 public class BookCreateDTO
 {
