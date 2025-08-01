@@ -44,7 +44,14 @@ public class BookService : IBookService
 
     public async Task UpdateBookByIdAsync(BookDTO bookDto, Guid id)
     {
-        var book = _mapper.Map<Book>(bookDto);
+        var existingBook = await _repository.GetByBookIdAsync(id);
+
+        if (existingBook == null)
+        {
+            throw new NullReferenceException($"No author with id: {id} was found.");
+        }
+        
+        var book = _mapper.Map(bookDto, existingBook);
         await _repository.UpdateBookByIdAsync(book, id);
     }
 

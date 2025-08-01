@@ -55,7 +55,9 @@ namespace LaboratorioDomain.Controllers
         public async Task<IActionResult> PutAuthor(Guid id, AuthorDTO authorDto)
         {
             if (!await AuthorExistsAsync(id))
+            {
                 return NotFound();
+            }
             
             await _authorService.UpdateAuthorByIdAsync(authorDto, id);
             
