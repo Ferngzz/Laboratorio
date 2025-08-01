@@ -1,5 +1,5 @@
 using LaboratorioMVC.Models;
-using LaboratorioWebApi.Models;
+using LaboratorioDomain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

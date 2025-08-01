@@ -5,7 +5,7 @@ using LaboratorioDomain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace LaboratorioWebApi.Controllers
+namespace LaboratorioDomain.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

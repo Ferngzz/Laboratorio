@@ -1,4 +1,4 @@
-using LaboratorioWebApi.Models;
+using LaboratorioDomain.Models;
 
 namespace LaboratorioMVC.Models;
 

@@ -2,7 +2,7 @@ using LaboratorioApplication.DTOs;
 using LaboratorioApplication.IServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LaboratorioWebApi.Controllers
+namespace LaboratorioDomain.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
