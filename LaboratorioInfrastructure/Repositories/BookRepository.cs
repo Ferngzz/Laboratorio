@@ -39,7 +39,15 @@ public class BookRepository : IBookRepository
             .Include(b => b.Loans)
             .FirstOrDefaultAsync(b => b.BookId == id);
     }
-
+    
+    public async Task<IEnumerable<Book>> GetBooksWithLoanStatusByAuthorIdAsync(Guid authorId)
+    {
+        return await _context.Books
+            .Include(b => b.Loans)
+            .Where(b => b.Authors.Any(a => a.AuthorId == authorId))
+            .ToListAsync();
+    }
+    
     public async Task AddBookAsync(Book book)
     {
         _context.Books.Add(book);

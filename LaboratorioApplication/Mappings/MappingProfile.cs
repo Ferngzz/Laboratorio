@@ -18,6 +18,7 @@ public class MappingProfile : Profile
         
         CreateMap<Book, BookDTO>();
         CreateMap<BookDTO, Book>();
+        CreateMap<Book, BookLoanDTO>();
         
         CreateMap<Loan, LoanDTO>();
         CreateMap<LoanDTO, Loan>();
