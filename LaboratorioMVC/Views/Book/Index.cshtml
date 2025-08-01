@@ -1,6 +1,71 @@
-﻿@{
+﻿@model BookFilterViewModel
+
+<link rel="stylesheet" href="~/css/Book/bookIndex.css" asp-append-version="true"/>
+<link rel="stylesheet" href="~/LaboratorioMVC.styles.css" asp-append-version="true"/>
+
+@{
     ViewData["Title"] = "Book Page";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Book Page</p>
+<div class="container my-5">
+    <div class="title-container">
+        <h1 class="bookshelf-title">Bookshelf</h1>
+    </div>
+
+    <div class="mb-5">
+        @await Html.PartialAsync("_BookFilter", Model)
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+        @foreach (var book in Model.Books)
+        {
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img-container">
+                        @{
+                            var currentLoaned = book.Loans?.FirstOrDefault(r => r.Returned == false);
+                        }
+                        @if (currentLoaned != null)
+                        {
+                            <div class="status-badge on-loan">On Loan</div>
+                        }
+                        else
+                        {
+                            <div class="status-badge available">Available</div>
+                        }
+
+                        <img
+                            src="https://cdn-prod.scalefast.com/public/assets/img/resized/wizardsofthecoast-secret-lair/de04d76c2ac1761cb2865b6afe38949f_KR_636_Q90.webp"
+                            class="card-img-top"
+                            alt="Cover for @book.Title">
+                    </div>
+                    <div class="custom-body">
+                        <h5 class="card-title fw-bold">@book.Title</h5>
+
+                        @if (book.Authors != null && book.Authors.Any())
+                        {
+                            <p class="card-text mb-2">
+                                <strong>Author(s):</strong>
+                                @string.Join(", ", book.Authors.Select(a => $"{a.FirstName} {a.LastName}"))
+                            </p>
+                        }
+
+                        <p class="card-text mt-2">@book.Description</p>
+
+                    </div>
+                    <div class="custom-card-footer">
+                        @if (currentLoaned != null)
+                        {
+                            <p class="card-text mt-3">
+                                <span class="due-date-badge">
+                                    Due: @currentLoaned.DevolutionDate.ToString("dd/MM/yyyy")
+                                </span>
+                            </p>
+                        }
+                        <a href="#" class="btn btn-details">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

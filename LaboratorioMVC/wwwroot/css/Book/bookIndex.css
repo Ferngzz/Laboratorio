@@ -1,0 +1,86 @@
+/*
+    Badge Loaned - Top Left Corner
+ */
+
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    z-index: 10;
+}
+
+.status-badge.available {
+    background-color: #28a745;
+}
+
+.status-badge.available:hover {
+    background-color: #1b7a30;
+}
+
+.status-badge.on-loan {
+    background-color: #dc3545;
+}
+
+.status-badge.on-loan:hover {
+    background-color: #b11c2a;
+}
+
+/* 
+    Badge Due Date - Bottom Left Corner
+ */
+
+.card {
+    height: 32rem;
+    width: 100%;
+    margin: 0 1em;
+    justify-content: start;
+}
+
+
+.custom-body {
+    padding: 1em;
+}
+
+.custom-card-footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: auto;
+    justify-items: start;
+    padding: 0 1em;
+    margin-bottom: 1em;
+}
+
+.custom-card-footer a {
+    width: fit-content;
+    align-self: center;
+}
+
+.due-date-badge {
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #ffc107;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.due-date-badge:hover {
+    background-color: #e0a800;
+}
+
+.card-img-container img {
+    height: 15em;
+}
+
+body {
+    background-image: url("https://i.scdn.co/image/ab67616100005174877d4c061d08c040974224be");
+}

@@ -1,0 +1,15 @@
+@model BookFilterViewModel
+
+<link rel="stylesheet" href="~/css/Book/bookFilter.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/LaboratorioMVC.styles.css" asp-append-version="true" />
+
+<div class="search-container">
+    <form asp-action="Index" method="get" asp-controller="Book">
+        <div class="search-wrapper">
+            <input type="text" name="searchString" value="@Model?.SearchString" class="form-control" placeholder="Search..." />
+            <button type="submit" class="btn-search-icon" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+    </form>
+</div>
