@@ -66,7 +66,7 @@ namespace LaboratorioDomain.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<Loan>> PostLoan(LoanDTO loanDto)
+        public async Task<ActionResult<LoanCreateDTO>> PostLoan(LoanDTO loanDto)
         {
             var loan = await _loanService.AddLoanAsync(loanDto);
 
@@ -87,6 +87,19 @@ namespace LaboratorioDomain.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("loan-book/{id}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public async Task<IActionResult> LoanBookByIdAsync(Guid bookId)
+        {
+            var loanCreateDto = await _loanService.LoanBookByIdAsync(bookId);
+            return CreatedAtAction("GetLoan" ,new {id = loanCreateDto.loanId}, loanCreateDto);
+        }
+
+        // public async Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId)
+        // {
+        //     
+        // }
 
         private async Task<bool> LoanExists(Guid id)
         {

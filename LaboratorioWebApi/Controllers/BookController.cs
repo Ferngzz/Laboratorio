@@ -67,7 +67,6 @@ namespace LaboratorioDomain.Controllers
         public async Task<ActionResult<BookDTO>> PostBook(BookDTO bookDto)
         {
             var book = await _bookService.AddBookAsync(bookDto);
-
             return CreatedAtAction("GetBook", new { id = book.BookId }, bookDto);
         }
 

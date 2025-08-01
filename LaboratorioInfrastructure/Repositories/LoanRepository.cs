@@ -57,4 +57,47 @@ public class LoanRepository : ILoanRepository
         
         await _context.SaveChangesAsync();
     }
+
+    public async Task<Loan> LoanBookByIdAsync(Guid bookId)
+    {
+        var book = await _context.Books
+            .Include(b => b.Loans)
+            .FirstOrDefaultAsync(b => b.BookId == bookId);
+
+        if (book == null || book.Loans.Any(l => !l.Returned))
+            return null;
+
+        var loan = new Loan
+        {
+            LoanId = Guid.NewGuid(),
+            BookId = bookId,
+            WithdrawalDate = DateTime.UtcNow,
+            DevolutionDate = DateTime.UtcNow.AddDays(7),
+            Returned = false
+        };
+
+        _context.Loans.Add(loan);
+        await _context.SaveChangesAsync();
+        return loan;
+    }
+
+    
+    // public async Task<(Loan, decimal)> ReturnBookAsync(Guid bookId)
+    // {
+    //     const decimal finePricePerDay = 2.50m;
+    //     
+    //     var loan = await _context.Loans.FindAsync(loanId);
+    //
+    //     if (loan == null || loan.Returned || loan.BookId != bookId)
+    //         return (loan, 0);
+    //
+    //     loan.Returned = true;
+    //
+    //     var delay = (DateTime.UtcNow - loan.DevolutionDate).Days;
+    //     var fine = delay > 0 ? delay * finePricePerDay : 0;
+    //
+    //     await _context.SaveChangesAsync();
+    //
+    //     return (loan, fine);
+    // }
 }
