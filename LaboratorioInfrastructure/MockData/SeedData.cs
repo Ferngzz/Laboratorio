@@ -1,0 +1,51 @@
+using LaboratorioDomain.Models;
+using LaboratorioInfrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace LaboratorioInfrastructure.MockData;
+
+public static class SeedData
+{
+    public static void Initialize(IServiceProvider serviceProvider)
+    {
+        using (var context = new BookshelfContext(
+                   serviceProvider.GetRequiredService<DbContextOptions<BookshelfContext>>()))
+        {
+            Console.WriteLine("--> Attempting to seed data...");
+
+            if (context.Authors.Any())
+            {
+                Console.WriteLine("--> Found existing data. Seeding not required.");
+                return;
+            }
+
+            Console.WriteLine("--> Seeding new data...");
+
+            var author1 = new Author { AuthorId = Guid.NewGuid(), FirstName = "J.R.R.", LastName = "Tolkien" };
+            var author2 = new Author { AuthorId = Guid.NewGuid(), FirstName = "C.S.", LastName = "Lewis" };
+            
+            context.Authors.AddRange(author1, author2);
+
+            var book1 = new Book
+            {
+                BookId = Guid.NewGuid(),
+                Title = "The Hobbit",
+                Description = "A fantasy novel.",
+                Authors = new List<Author> { author1 }
+            };
+
+            var book2 = new Book
+            {
+                BookId = Guid.NewGuid(),
+                Title = "The Lion, the Witch and the Wardrobe",
+                Description = "A fantasy novel for children.",
+                Authors = new List<Author> { author2 }
+            };
+
+            context.Books.AddRange(book1, book2);
+            
+            var recordsSaved = context.SaveChanges();
+            Console.WriteLine($"--> Seeding finished. {recordsSaved} records saved.");
+        }
+    }
+}

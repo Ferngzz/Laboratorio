@@ -1,7 +1,7 @@
-using LaboratorioWebApi.Models;
-using LaboratorioWebApi.Services;
-using Microsoft.AspNetCore.Http;
+using LaboratorioApplication.DTOs;
+using LaboratorioApplication.Services;
 using Microsoft.AspNetCore.Mvc;
+using LaboratorioDomain.Models;
 
 namespace LaboratorioWebApi.Controllers
 {
@@ -9,43 +9,88 @@ namespace LaboratorioWebApi.Controllers
     [ApiController]
     public class AuthorController : ControllerBase
     {
-        private readonly AuthorService _context;
+        private readonly AuthorService _authorService;
 
-        public AuthorController(AuthorService context)
+        public AuthorController(AuthorService authorService)
         {
-            _context = context;
+            _authorService = authorService;
+        }
+
+        // GET: api/Author
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<AuthorDTO>>> GetAuthors()
+        {
+            var authorsDto = await _authorService.GetAllAuthorsAsync();
+            return Ok(authorsDto);
         }
         
-        // GET: api/<AuthorController>
-        [HttpGet]
-        public IEnumerable<AuthorDTO> GetAllAuthors()
+        // GET: api/Author?lastName=
+        // By Author Last Name
+        [HttpGet("by-lastname")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<AuthorDTO>>> GetAuthorsByLastName([FromQuery] string lastName)
         {
-            _context.GetAllAuthors()
+            return Ok(await _authorService.GetAllAuthorsByAuthorLastNameAsync(lastName));
         }
 
-        // GET api/<AuthorController>/5
+        // GET: api/Author/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<AuthorDTO>> GetAuthor(Guid id)
         {
-            return "value";
+            var authorDto = await _authorService.GetByAuthorIdAsync(id);
+
+            if (authorDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(authorDto);
         }
 
-        // POST api/<AuthorController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<AuthorController>/5
+        // PUT: api/Author/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> PutAuthor(Guid id, AuthorDTO authorDto)
         {
+            if (!await AuthorExistsAsync(id))
+                return NotFound();
+            
+            await _authorService.UpdateAuthorByIdAsync(authorDto, id);
+            
+            return NoContent();
         }
 
-        // DELETE api/<AuthorController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // POST: api/Author
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        [ProducesResponseType(typeof(AuthorDTO), StatusCodes.Status201Created)]
+        public async Task<ActionResult<Author>> PostAuthor(AuthorDTO authorDto)
         {
+            var author = await _authorService.AddAuthorAsync(authorDto);
+
+            return CreatedAtAction("GetAuthor", new { id = author.AuthorId }, author);
+        }
+
+        // DELETE: api/Author/5
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteAuthor(Guid id)
+        {
+            if (!await AuthorExistsAsync(id))
+                return NotFound();
+
+            await _authorService.DeleteAuthorByIdAsync(id);
+
+            return NoContent();
+        }
+
+        private async Task<bool> AuthorExistsAsync(Guid id)
+        {
+            var author = await _authorService.GetByAuthorIdAsync(id);
+            return author != null;
         }
     }
 }

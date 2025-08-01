@@ -1,8 +1,8 @@
-﻿using LaboratorioDomain.Repositories;
-using LaboratorioWebApi.Data;
-using LaboratorioWebApi.Models;
+﻿using LaboratorioDomain.IRepositories;
+using LaboratorioDomain.Models;
+using LaboratorioInfrastructure.Data;
 
-namespace LaboratorioWebApi.Repositories;
+namespace LaboratorioInfrastructure.Repositories;
 
 public class BookRepository : IBookRepository
 {
@@ -13,32 +13,32 @@ public class BookRepository : IBookRepository
         _context = context;
     }
     
-    public Task<IEnumerable<Book>> GetAllBooks()
+    public async Task<IEnumerable<Book>> GetAllBooksAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Book>> GetAllBooksByAuthorId(Guid authorId)
+    public async Task<IEnumerable<Book>> GetAllBooksByAuthorIdAsync(Guid authorId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Book> GetByBookId(Guid id)
+    public async Task<Book> GetByBookIdAsync(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Task AddBook(Book book)
+    public async Task AddBookAsync(Book book)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateBookById(Book book, Guid id)
+    public async Task UpdateBookByIdAsync(Book book, Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteBookById(Guid id)
+    public async Task DeleteBookByIdAsync(Guid id)
     {
         throw new NotImplementedException();
     }

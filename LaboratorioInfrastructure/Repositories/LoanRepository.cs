@@ -1,8 +1,8 @@
-﻿using LaboratorioDomain.Repositories;
-using LaboratorioWebApi.Data;
-using LaboratorioWebApi.Models;
+﻿using LaboratorioDomain.IRepositories;
+using LaboratorioDomain.Models;
+using LaboratorioInfrastructure.Data;
 
-namespace LaboratorioWebApi.Repositories;
+namespace LaboratorioInfrastructure.Repositories;
 
 public class LoanRepository : ILoanRepository
 {
@@ -13,32 +13,32 @@ public class LoanRepository : ILoanRepository
         _context = context;
     }
     
-    public Task<IEnumerable<Loan>> GetAllLoans()
+    public async Task<IEnumerable<Loan>> GetAllLoansAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<Loan> GetByLoanId(Guid id)
+    public async Task<Loan> GetByLoanIdAsync(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Loan> GetByLoanByBookId(Guid bookId)
+    public async Task<Loan> GetByLoanByBookIdAsync(Guid bookId)
     {
         throw new NotImplementedException();
     }
 
-    public Task AddLoan(Loan loan)
+    public async Task AddLoanAsync(Loan loan)
     {
         throw new NotImplementedException();
     }
 
-    public Task UpdateLoanById(Loan loan, Guid id)
+    public async Task UpdateLoanByIdAsync(Loan loan, Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteLoanById(Guid id)
+    public async Task DeleteLoanByIdAsync(Guid id)
     {
         throw new NotImplementedException();
     }

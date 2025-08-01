@@ -1,9 +1,9 @@
-﻿namespace LaboratorioWebApi.Models;
+﻿namespace LaboratorioApplication.DTOs;
 
 public class LoanDTO
 {
     public DateTime WithdrawalDate { get; set; }
     public DateTime DevolutionDate { get; set; }
     public Boolean Returned { get; set; }
-    public virtual BookDTO BookDto { get; set; }
+    public virtual required BookDTO BookDto { get; set; }
 }
