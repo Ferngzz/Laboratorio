@@ -47,33 +47,14 @@ public class AuthorService : IAuthorService
 
     public async Task UpdateAuthorByIdAsync(AuthorDTO authorDto, Guid id)
     {
-        var author = await _authorRepository.GetByAuthorIdAsync(id); 
+        var existingAuthor = await _authorRepository.GetByAuthorIdAsync(id);
 
-        if (author == null)
-            throw new Exception("Author not found");
-
-        author.FirstName = authorDto.FirstName;
-        author.LastName = authorDto.LastName;
-
-        if (authorDto.Books.Any())
+        if (existingAuthor == null)
         {
-            var books = new List<Book>();
-            foreach (var bookId in authorDto.Books)
-            {
-                var book = await _bookRepository.GetByBookIdAsync(bookId);
-                if (book == null)
-                    throw new Exception($"Book not found with ID: {bookId}");
-
-                books.Add(book);
-            }
-
-            author.Books = books; 
-        }
-        else
-        {
-            author.Books.Clear();
+            throw new NullReferenceException($"No author with id: {id} was found.");
         }
 
+        var author = _mapper.Map(authorDto, existingAuthor);
         await _authorRepository.UpdateAuthorByIdAsync(author, id);
     }
 

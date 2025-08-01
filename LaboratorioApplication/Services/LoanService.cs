@@ -44,7 +44,14 @@ public class LoanService : ILoanService
 
     public async Task UpdateLoanByIdAsync(LoanDTO loanDto, Guid id)
     {
-        var loan = await _loanRepository.GetByLoanIdAsync(id);
+        var existingLoan = await _loanRepository.GetByLoanIdAsync(id);
+        
+        if (existingLoan == null)
+        {
+            throw new NullReferenceException($"No author with id: {id} was found.");
+        }
+        
+        var loan = _mapper.Map(loanDto, existingLoan);
         await _loanRepository.UpdateLoanByIdAsync(loan, id);
     }
 
