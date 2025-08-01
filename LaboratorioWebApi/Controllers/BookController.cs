@@ -45,6 +45,7 @@ namespace LaboratorioDomain.Controllers
         }
 
         [HttpGet("author/{authorId}/books-loan-status")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetBooksLoanStatusByAuthor(Guid authorId)
         {
             return Ok(await _bookService.GetBooksLoanStatusByAuthorIdAsync(authorId));
