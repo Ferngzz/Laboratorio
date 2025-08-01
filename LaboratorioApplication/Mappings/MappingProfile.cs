@@ -1,4 +1,3 @@
-// LaboratorioApplication/Mappings/MappingProfile.cs
 using AutoMapper;
 using LaboratorioDomain.Models;
 using LaboratorioApplication.DTOs;
@@ -9,7 +8,9 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Author, AuthorDTO>();
+        CreateMap<Author, AuthorDTO>() .ForMember(dest => dest.Books, opt => 
+            opt.MapFrom(src => src.Books.Select(b => b.BookId)));
+        
         CreateMap<AuthorDTO, Author>();
         CreateMap<Author, AuthorCreateDTO>();
         CreateMap<Book, BookDTO>();
