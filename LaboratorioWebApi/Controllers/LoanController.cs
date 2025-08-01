@@ -93,11 +93,22 @@ namespace LaboratorioDomain.Controllers
             return CreatedAtAction("GetLoan" ,new {id = loanCreateDto.loanId}, loanCreateDto);
         }
 
-        // public async Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId)
-        // {
-        //     
-        // }
+        
+        [HttpPut("return/{bookId}/{loanId}")]
+        public async Task<IActionResult> ReturnBook(Guid bookId, Guid loanId)
+        {
+            var (loanDto, fine) = await _loanService.ReturnBookAsync(bookId, loanId);
 
+            if (loanDto == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                Loan = loanDto,
+                Fine = fine
+            });
+        }
+        
         private async Task<bool> LoanExists(Guid id)
         {
             var loan = await _loanService.GetByLoanIdAsync(id);

@@ -82,22 +82,22 @@ public class LoanRepository : ILoanRepository
     }
 
     
-    // public async Task<(Loan, decimal)> ReturnBookAsync(Guid bookId)
-    // {
-    //     const decimal finePricePerDay = 2.50m;
-    //     
-    //     var loan = await _context.Loans.FindAsync(loanId);
-    //
-    //     if (loan == null || loan.Returned || loan.BookId != bookId)
-    //         return (loan, 0);
-    //
-    //     loan.Returned = true;
-    //
-    //     var delay = (DateTime.UtcNow - loan.DevolutionDate).Days;
-    //     var fine = delay > 0 ? delay * finePricePerDay : 0;
-    //
-    //     await _context.SaveChangesAsync();
-    //
-    //     return (loan, fine);
-    // }
+    public async Task<(Loan, decimal)> ReturnBookAsync(Guid bookId, Guid loanId)
+    {
+        const decimal finePricePerDay = 2.50m;
+        
+        var loan = await _context.Loans.FindAsync(loanId);
+    
+        if (loan == null || loan.Returned || loan.BookId != bookId)
+            return (loan, 0);
+    
+        loan.Returned = true;
+    
+        var delay = (DateTime.UtcNow - loan.DevolutionDate).Days;
+        var fine = delay > 0 ? delay * finePricePerDay : 0;
+    
+        await _context.SaveChangesAsync();
+    
+        return (loan, fine);
+    }
 }

@@ -66,15 +66,15 @@ public class LoanService : ILoanService
         return _mapper.Map<LoanCreateDTO>(loan);
     }
 
-    // public async Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId)
-    // {
-    //     var (loan, fine) = await _loanRepository.ReturnBookAsync(bookId, loanId);
-    //
-    //     if (loan == null)
-    //         return (null, 0);
-    //
-    //     var loanDto = _mapper.Map<LoanFineDTO>(loan);
-    //
-    //     return (loanDto, fine);
-    // }
+    public async Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId)
+    {
+        var (loan, fine) = await _loanRepository.ReturnBookAsync(bookId, loanId);
+    
+        if (loan == null)
+            return (null, 0);
+    
+        var loanDto = _mapper.Map<LoanFineDTO>(loan);
+    
+        return (loanDto, fine);
+    }
 }

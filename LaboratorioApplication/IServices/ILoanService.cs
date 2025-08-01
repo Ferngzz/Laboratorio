@@ -11,5 +11,5 @@ public interface ILoanService
     Task UpdateLoanByIdAsync(LoanDTO loanDto, Guid id);
     Task DeleteLoanByIdAsync(Guid id);
     Task<LoanCreateDTO> LoanBookByIdAsync(Guid bookId);
-    // Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId);
+    Task<(LoanFineDTO, decimal)> ReturnBookAsync(Guid bookId, Guid loanId);
 }
