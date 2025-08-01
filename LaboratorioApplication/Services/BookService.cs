@@ -35,10 +35,11 @@ public class BookService : IBookService
         return _mapper.Map<BookDTO>(book);
     }
 
-    public async Task AddBookAsync(BookDTO bookDto)
+    public async Task<BookCreateDTO> AddBookAsync(BookDTO bookDto)
     {
         var book = _mapper.Map<Book>(bookDto);
         await _repository.AddBookAsync(book);
+        return _mapper.Map<BookCreateDTO>(book);
     }
 
     public async Task UpdateBookByIdAsync(BookDTO bookDto, Guid id)

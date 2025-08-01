@@ -35,10 +35,11 @@ public class LoanService : ILoanService
         return _mapper.Map<LoanDTO>(loan);
     }
 
-    public async Task AddLoanAsync(LoanDTO loanDto)
+    public async Task<LoanCreateDTO> AddLoanAsync(LoanDTO loanDto)
     {
         var loan = _mapper.Map<Loan>(loanDto);
         await _loanRepository.AddLoanAsync(loan);
+        return _mapper.Map<LoanCreateDTO>(loan);
     }
 
     public async Task UpdateLoanByIdAsync(LoanDTO loanDto, Guid id)
