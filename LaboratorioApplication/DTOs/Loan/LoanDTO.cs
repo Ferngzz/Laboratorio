@@ -1,10 +1,9 @@
-﻿namespace LaboratorioWebApi.Models;
+﻿namespace LaboratorioApplication.DTOs;
 
-public class Loan
+public class LoanDTO
 {
-    public Guid LoanId { get; set; }
     public DateTime WithdrawalDate { get; set; }
     public DateTime DevolutionDate { get; set; }
     public Boolean Returned { get; set; }
-    public virtual Book Book { get; set; }
+    public required Guid BookId { get; set; }
 }
