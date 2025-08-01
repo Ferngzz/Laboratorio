@@ -1,5 +1,6 @@
 using LaboratorioApplication.DTOs;
 using LaboratorioApplication.IServices;
+using LaboratorioApplication.Services;
 using LaboratorioDomain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace LaboratorioWebApi.Controllers
 
         // GET: api/Loan
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<LoanDTO>>> GetLoans()
         {
             return Ok(await _loanService.GetAllLoansAsync());
@@ -26,6 +28,7 @@ namespace LaboratorioWebApi.Controllers
 
         // GET: api/Loan/5
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<LoanDTO>> GetLoan(Guid id)
         {
             if (!await LoanExists(id))
@@ -35,10 +38,18 @@ namespace LaboratorioWebApi.Controllers
 
             return Ok(await _loanService.GetByLoanIdAsync(id));
         }
+        
+        [HttpGet("book-id/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<LoanDTO>> GetLoanByBookId(Guid bookId)
+        {
+            return Ok(await _loanService.GetByLoanByBookIdAsync(bookId));
+        }
 
         // PUT: api/Loan/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutLoan(Guid id, LoanDTO loanDto)
         {
             if (!await LoanExists(id))
@@ -54,6 +65,7 @@ namespace LaboratorioWebApi.Controllers
         // POST: api/Loan
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Loan>> PostLoan(LoanDTO loanDto)
         {
             var loan = await _loanService.AddLoanAsync(loanDto);
@@ -63,6 +75,7 @@ namespace LaboratorioWebApi.Controllers
 
         // DELETE: api/Loan/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteLoan(Guid id)
         {
             if (!await LoanExists(id))
