@@ -1,3 +1,4 @@
+using LaboratorioApplication.IServices;
 using LaboratorioApplication.Mappings;
 using LaboratorioDomain.IRepositories;
 using LaboratorioApplication.Services;
@@ -35,9 +36,9 @@ builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<ILoanRepository, LoanRepository>();
 
-builder.Services.AddScoped<BookService>();
-builder.Services.AddScoped<AuthorService>();
-builder.Services.AddScoped<LoanService>();
+builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<ILoanService, LoanService>();
 
 builder.Services.AddAutoMapper(cfg =>
 {
