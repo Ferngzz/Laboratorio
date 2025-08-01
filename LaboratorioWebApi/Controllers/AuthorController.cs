@@ -1,5 +1,5 @@
 using LaboratorioApplication.DTOs;
-using LaboratorioApplication.Services;
+using LaboratorioApplication.IServices;
 using Microsoft.AspNetCore.Mvc;
 using LaboratorioDomain.Models;
 
@@ -9,9 +9,9 @@ namespace LaboratorioWebApi.Controllers
     [ApiController]
     public class AuthorController : ControllerBase
     {
-        private readonly AuthorService _authorService;
+        private readonly IAuthorService _authorService;
 
-        public AuthorController(AuthorService authorService)
+        public AuthorController(IAuthorService authorService)
         {
             _authorService = authorService;
         }
@@ -21,8 +21,7 @@ namespace LaboratorioWebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<AuthorDTO>>> GetAuthors()
         {
-            var authorsDto = await _authorService.GetAllAuthorsAsync();
-            return Ok(authorsDto);
+            return Ok(await _authorService.GetAllAuthorsAsync());
         }
         
         // GET: api/Author?lastName=

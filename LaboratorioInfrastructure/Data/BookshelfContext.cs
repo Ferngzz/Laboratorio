@@ -17,9 +17,13 @@ public class BookshelfContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Book>()
-            .HasMany(b => b.Authors)
-            .WithMany(a => a.Books);
+        modelBuilder.Entity<Author>()
+            .HasMany(a => a.Books)
+            .WithMany(b => b.Authors)
+            .UsingEntity<Dictionary<string, object>>(
+                "AuthorBook",
+                ab => ab.HasOne<Book>().WithMany().HasForeignKey("BooksBookId"),
+                ab => ab.HasOne<Author>().WithMany().HasForeignKey("AuthorsAuthorId"));
     }
     
     

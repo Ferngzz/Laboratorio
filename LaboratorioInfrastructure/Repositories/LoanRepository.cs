@@ -1,6 +1,7 @@
 ﻿using LaboratorioDomain.IRepositories;
 using LaboratorioDomain.Models;
 using LaboratorioInfrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace LaboratorioInfrastructure.Repositories;
 
@@ -15,31 +16,45 @@ public class LoanRepository : ILoanRepository
     
     public async Task<IEnumerable<Loan>> GetAllLoansAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Loans
+            .Include(l => l.Book)
+            .ToListAsync();
     }
 
     public async Task<Loan> GetByLoanIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        return await  _context.Loans
+            .Include(l => l.Book)
+            .FirstOrDefaultAsync(l => l.LoanId == id);
     }
 
     public async Task<Loan> GetByLoanByBookIdAsync(Guid bookId)
     {
-        throw new NotImplementedException();
+        return await _context.Loans
+            .Include(l => l.Book)
+            .FirstOrDefaultAsync(l => l.BookId == bookId);
     }
 
     public async Task AddLoanAsync(Loan loan)
     {
-        throw new NotImplementedException();
+        _context.Loans.Add(loan);
+        await _context.SaveChangesAsync();
     }
 
     public async Task UpdateLoanByIdAsync(Loan loan, Guid id)
     {
-        throw new NotImplementedException();
+        _context.Loans.Update(loan);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteLoanByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var existingLoan = await GetByLoanIdAsync(id);
+        if (existingLoan != null)
+        {
+            _context.Loans.Remove(existingLoan);
+        }
+        
+        await _context.SaveChangesAsync();
     }
 }
