@@ -1,4 +1,5 @@
 ﻿using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Book;
 
 namespace LaboratorioApplication.IServices;
 

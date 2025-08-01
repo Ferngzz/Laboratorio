@@ -1,9 +1,6 @@
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Loan;
 using LaboratorioApplication.IServices;
-using LaboratorioApplication.Services;
-using LaboratorioDomain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace LaboratorioDomain.Controllers
 {

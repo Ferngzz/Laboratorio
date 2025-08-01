@@ -1,4 +1,4 @@
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Book;
 using LaboratorioApplication.IServices;
 using Microsoft.AspNetCore.Mvc;
 

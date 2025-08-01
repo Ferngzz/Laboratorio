@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Author;
 using LaboratorioApplication.IServices;
 using LaboratorioDomain.IRepositories;
 using LaboratorioDomain.Models;
@@ -9,13 +9,11 @@ namespace LaboratorioApplication.Services;
 public class AuthorService : IAuthorService
 {
     private readonly IAuthorRepository _authorRepository;
-    private readonly IBookRepository _bookRepository;
     private readonly IMapper _mapper;
 
-    public AuthorService(IAuthorRepository authorRepository, IBookRepository bookRepository,  IMapper mapper)
+    public AuthorService(IAuthorRepository authorRepository, IMapper mapper)
     {
         _authorRepository = authorRepository;
-        _bookRepository = bookRepository;
         _mapper = mapper;
     }
 

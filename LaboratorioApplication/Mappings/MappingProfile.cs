@@ -1,7 +1,8 @@
 using AutoMapper;
 using LaboratorioDomain.Models;
-using LaboratorioApplication.DTOs;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using LaboratorioApplication.DTOs.Author;
+using LaboratorioApplication.DTOs.Book;
+using LaboratorioApplication.DTOs.Loan;
 
 namespace LaboratorioApplication.Mappings;
 

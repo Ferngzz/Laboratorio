@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LaboratorioApplication.DTOs;
+using LaboratorioApplication.DTOs.Loan;
 using LaboratorioApplication.IServices;
 using LaboratorioDomain.IRepositories;
 using LaboratorioDomain.Models;

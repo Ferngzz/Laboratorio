@@ -1,4 +1,4 @@
-namespace LaboratorioApplication.DTOs;
+namespace LaboratorioApplication.DTOs.Author;
 
 public class AuthorCreateDTO
 {

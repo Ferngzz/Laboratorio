@@ -1,4 +1,4 @@
-﻿using LaboratorioApplication.DTOs;
+﻿using LaboratorioApplication.DTOs.Loan;
 
 namespace LaboratorioApplication.IServices;
 
