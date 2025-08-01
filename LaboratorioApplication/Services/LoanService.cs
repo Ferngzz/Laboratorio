@@ -23,7 +23,7 @@ public class LoanService : ILoanService
         return _mapper.Map<IEnumerable<LoanDTO>>(loans);
     }
 
-    public async Task<LoanDTO> GetByLoanIdAsync(Guid id)
+    public async Task<LoanDTO?> GetByLoanIdAsync(Guid id)
     {
         var loan = await _loanRepository.GetByLoanIdAsync(id);
         return _mapper.Map<LoanDTO>(loan);
